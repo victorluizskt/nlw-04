@@ -1,7 +1,10 @@
-import express, { response } from 'express';
-import {Request, Response} from 'express';
+import 'reflect-metadata';
+import express from 'express';
+import {router} from './routes';
+import './database';
 
 const app = express();
+app.use(express.json())
 
 /**
  * GET => Busca
@@ -11,19 +14,11 @@ const app = express();
  * PATCH => Alteração especifica
  */
 
-// https://localhost:3333/users
-app.get("/", (req: Request, res: Response) => {
-    return res.json({message: "Hello Word NLW04"});
-});
-
-// 1 param => Rota(Recurso API)
-// 2 param => Request, Response
-
-app.post("/", (req: Request, res: Response) => {
-    // Recebeu os dados para salvar
-    return res.json({message: "Os dados foram salvos com sucesso!"});
-});
+ app.use(router);
 
 app.listen(3333, () => {
     console.log("Server is running port: " + 3333);
 });
+
+// #rumoaoproximonivel
+// #jornadainfinita
